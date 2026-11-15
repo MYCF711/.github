@@ -9,16 +9,16 @@ body:
 
         **一个 Issue 只讲一个建议。** 几个想法请分开提交，方便分别讨论和排期；混在一起的建议通常没法推进。
 
-        写建议不需要懂实现细节：说清楚你在什么场景下遇到什么麻烦、希望它变成什么样就够了。
+        写建议不需要懂实现细节：说清楚想解决什么、希望它变成什么样就够了，其他信息知道再填。
 
   - type: textarea
     id: scenario
     attributes:
-      label: 使用场景
+      label: 使用场景（可选）
       description: 你在做什么的时候需要这个功能？（做什么事、什么流程、多常用）
       placeholder: 例如：每天要把 A 导到 B，现在得手动点五次。
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: problem
