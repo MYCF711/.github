@@ -1,0 +1,139 @@
+name: Bug 报告（可复现缺陷）
+description: 只收能复现的 Bug。提问、配置求助、闲聊请去项目交流群或 Discussions，不要开 Issue。
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **这个 Issue 区只收「可复现的 Bug」** —— 也就是能按步骤稳定重现出来的缺陷。
+
+        提问、求配置、插件怎么用、闲聊、许愿 → **请不要开 Issue**，去项目交流群，或者项目的 Discussions（如果已开启）。
+        想加新功能 → 请改用「功能建议」表单。
+
+        **普通动线（照做就行，不需要你自己把技术细节挖到底）：**
+
+        1. **先更新** —— 把项目/插件（以及宿主）更新到当前最新版，再复现一次。很多「失效」在最新版里已经修好了。
+        2. **先交给 Agent 排查** —— 把现象、截图、报错文本直接丢给你的 AI Agent，让它复现、定位，并整理成结构化的 Issue 内容。
+        3. **再提交** —— 把 Agent 整理出来的结果，逐项填进下面的字段里即可。
+
+        另外三件事：**一个 Issue 只讲一个问题**；日志请**复制文字**贴进来，**不要只发截图**；提交前请**隐去 token、Cookie、账号、手机号**等敏感信息。
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: 提交前自查
+      description: 三项都勾选后才能提交。
+      options:
+        - label: 我已把项目/插件（以及宿主）更新到当前最新版，更新后问题仍然存在
+          required: true
+        - label: 我已搜索过已有 Issue（**包括已关闭的 Issue**），没有找到相同问题
+          required: true
+        - label: 我已把现象和截图先交给 Agent 排查，下面的内容是整理后的结果
+          required: true
+
+  - type: input
+    id: project_version
+    attributes:
+      label: 项目 / 插件版本
+      description: 写具体版本号（例如 1.4.2），不要写「最新版」。不知道版本号可以问 Agent，或看界面上显示的版本。
+      placeholder: 1.4.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: host
+    attributes:
+      label: 宿主
+      description: 这个项目运行在什么宿主/平台上？不确定就选「其他」并在宿主版本里写清楚。
+      options:
+        - DSH
+        - OpenCode
+        - Magpie
+        - 其他
+        - 不适用
+    validations:
+      required: true
+
+  - type: input
+    id: host_version
+    attributes:
+      label: 宿主版本
+      description: 宿主的版本号；不适用就填「不适用」，其他宿主请写成「宿主名 + 版本」。
+      placeholder: 0.2.2 / 不适用
+    validations:
+      required: true
+
+  - type: input
+    id: os_deployment
+    attributes:
+      label: 操作系统与部署方式
+      description: 例如「Windows 11，本地安装」「Ubuntu 24.04，Docker 部署」「macOS 15，源码运行」。
+      placeholder: Windows 11，本地安装
+    validations:
+      required: true
+
+  - type: input
+    id: related_model
+    attributes:
+      label: 相关模型或组件
+      description: 模型相关的问题请写**完整模型 ID**（带全部前缀，不要简写、不要只写「某某模型」）；不是模型相关的问题，写涉及的组件名（例如网关、插件、CLI、界面）。没有就填「不适用」。
+      placeholder: 例如 provider/model-name-2026-01-01 ；或「网关」「CLI」；或「不适用」
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: 实际现象
+      description: 发生了什么？在什么操作之后发生？问题能稳定复现吗（每次都出现 / 偶尔出现）？
+      placeholder: 进行到哪一步、看到了什么、有没有伴随其他异常。
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: 期望行为
+      description: 你期望它是什么表现？和实际表现差在哪？
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: 最小复现步骤
+      description: 一步一步写，从打开什么、点了什么开始，越少步骤越好；能稳定复现到同一步骤最好。
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 完整报错文本或日志
+      description: |
+        **直接复制文字**粘贴进来，**不要只发截图** —— 截图里的报错没法被搜索和复制，排查效率很低。
+        贴之前请**隐去 token、Cookie、账号、手机号**等敏感信息；没有报错就如实写「无报错」。
+      placeholder: 把完整的报错/日志文字贴在这里（不要把截图当成日志）。
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图 / 录屏（可选）
+      description: 图片可以直接拖进输入框，也可以贴链接。**截图只是补充**，不能代替上面的文字日志。
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: final_confirm
+    attributes:
+      label: 最后确认
+      options:
+        - label: 本 Issue 只讲一个问题，并且已经附上可复现步骤和文字日志
+          required: true
